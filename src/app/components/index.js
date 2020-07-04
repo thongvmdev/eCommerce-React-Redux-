@@ -4,7 +4,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <a href="" className="navbar-brand crimson">
-        <i class="fas fa-shopping-cart"></i> Mes Courses en Ligne
+        <i className="fas fa-shopping-cart"></i> Mes Courses en Ligne
       </a>
       <button
         className="navbar-toggler"
@@ -50,14 +50,15 @@ export const Footer = () => {
 
 export const Card = (props) => {
   const { fruit } = props
+  console.log(fruit)
   return (
     <div className="col-sm-4">
       <div className="card">
         <img
           width="170"
           height="170"
-          src={process.env.PUBLIC_URL + `/assets/0/citron.png`}
-          alt="citron"
+          src={process.env.PUBLIC_URL + `/assets/${fruit.category}/${fruit.image}`}
+          alt={fruit.name}
         />
         <div className="card-body">
           <div className="row">
@@ -66,7 +67,7 @@ export const Card = (props) => {
             </div>
             <div className="col-sm-6">
               <p>
-                €2.99/unit
+                €{fruit.price}/{fruit.unit}
               </p>
               <button className="btn btn-warning btn-sm">view product</button>
             </div>
@@ -168,12 +169,12 @@ export const Modal = () => {
 
 
 export const List = (props) => {
-  const { data } = props;
-  const fruits = data[0];
+  const { data, category } = props;
+  const grocery = data[category];
   return (
     <div className="col-sm">
       <div className="row">
-        {fruits.map(fruit => <Card fruit={fruit}/>)}
+        {grocery.map((fruit) => <Card key={fruit.ref} fruit={fruit}/>)}
       </div>
     </div>
   );
