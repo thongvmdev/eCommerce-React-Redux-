@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Navbar = () => {
+export const Navbar = ({filter, setFiltering}) => {
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <a href="" className="navbar-brand crimson">
@@ -26,7 +26,13 @@ export const Navbar = () => {
                 className="form-control mr-sm-2"
                 type="search"
                 placeholder="Search"
-                aria-label="Search"/>
+                aria-label="Search"
+                onChange={(e) => {
+                  console.log(e.target.value.length)
+                  setFiltering(e.target.value.length > 0)
+                  filter(e.target.value)
+                }}  
+              />
             </form>
           </div>
           <div className="menu-right">
@@ -49,25 +55,25 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
-  const { fruit } = props
-  console.log(fruit)
+  const { item } = props
+  console.log(item)
   return (
     <div className="col-sm-4">
       <div className="card">
         <img
           width="170"
           height="170"
-          src={process.env.PUBLIC_URL + `/assets/${fruit.category}/${fruit.image}`}
-          alt={fruit.name}
+          src={`/assets/${item.category}/${item.image}`}
+          alt={item.name}
         />
         <div className="card-body">
           <div className="row">
             <div className="col-sm-6">
-              <h4>{fruit.name}</h4>
+              <h4>{item.name}</h4>
             </div>
             <div className="col-sm-6">
               <p>
-                €{fruit.price}/{fruit.unit}
+                €{item.price}/{item.unit}
               </p>
               <button className="btn btn-warning btn-sm">view product</button>
             </div>
@@ -79,6 +85,17 @@ export const Card = (props) => {
   );
 };
 
+export const List = (props) => {
+  const { data, category } = props;
+  console.log(data)
+  return (
+    <div className="col-sm">
+      <div className="row">
+        {data.map((item) => <Card key={item.ref} item={item}/>)}
+      </div>
+    </div>
+  );
+};
 
 export const Modal = () => {
   return (
@@ -162,19 +179,6 @@ export const Modal = () => {
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-
-export const List = (props) => {
-  const { data, category } = props;
-  const grocery = data[category];
-  return (
-    <div className="col-sm">
-      <div className="row">
-        {grocery.map((fruit) => <Card key={fruit.ref} fruit={fruit}/>)}
       </div>
     </div>
   );
