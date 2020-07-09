@@ -8,7 +8,7 @@ const SideMenu = ({ localCategory, category }) => {
   return (
     <div className="col-sm-2 sidebar">
       <ul>
-        {links.map((link, index) => <li className={category == index ? 'active' : undefined} onClick={() => localCategory(index)} key={index}>{link}</li>)}
+        {links.map((link, index) => <li className={category === index ? 'active' : undefined} onClick={() => localCategory(index)} key={index}>{link}</li>)}
       </ul>
     </div>
   )
@@ -18,34 +18,35 @@ const App = () => {
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false)
   const [filtered, setFiltered] = useState()
+  const [count, setCount] = useState(1)
   const localCategory = (i) => {
     setCategory(i)
   }
   const filterResults = (input) => { 
     let fullList = list.flat() // chuyen list(gom 5 mang con) thanh tap hon 38 phan tu trong 1 mang duy nhat
     let results = fullList.filter(item => {
-      const name = item.name.toLowerCase();
-      // console.log(name);
+      const name = item.name.toLowerCase(); 
+      console.log(name);
       const term = input.toLowerCase();
-      return name.indexOf(term) != -1 
+      return name.indexOf(term) !== -1 
     })
     setFiltered(results)
   }
 
   useEffect(() => {
-    console.log(isFiltering);
+    // console.log(isFiltering);
     // setFiltering(!isFiltering)
   })
 
-  console.log(filtered);
+  // console.log(filtered);
 
   return (
     <Fragment>
-      <Navbar filter={filterResults} setFiltering={setFiltering}/>
+      <Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>
       <div className="container">
           <div className="row">
             <SideMenu localCategory={localCategory} category={category}/>
-            <List data={ isFiltering ? filtered : list[category]} category={category}/>
+            <List data={ isFiltering ? filtered : list[category]} category={category} count={count} addToCart={setCount}/>
           </div>
       </div>
     </Fragment>

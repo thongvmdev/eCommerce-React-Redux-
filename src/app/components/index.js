@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const Navbar = ({filter, setFiltering}) => {
+export const Navbar = ({filter, setFiltering, count}) => {
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <a href="" className="navbar-brand crimson">
@@ -24,11 +24,11 @@ export const Navbar = ({filter, setFiltering}) => {
             <form className="search form-inline my-2 my-lg-0">
               <input
                 className="form-control mr-sm-2"
-                type="search"
+                type="search" 
                 placeholder="Search"
                 aria-label="Search"
                 onChange={(e) => {
-                  console.log(e.target.value.length)
+                  // console.log(e.target.value.length)
                   setFiltering(e.target.value.length > 0)
                   filter(e.target.value)
                 }}  
@@ -37,6 +37,8 @@ export const Navbar = ({filter, setFiltering}) => {
           </div>
           <div className="menu-right">
             {/* cart */}
+            <i className="fas fa-shopping-bag fa-2x"></i> 
+              <span className="badge badge-pill badge-success">{count}</span>
           </div>
         </div>
       </div>
@@ -55,8 +57,8 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
-  const { item } = props
-  console.log(item)
+  const { item, addToCart, count } = props
+  // console.log(item)
   return (
     <div className="col-sm-4">
       <div className="card">
@@ -75,84 +77,87 @@ export const Card = (props) => {
               <p>
                 €{item.price}/{item.unit}
               </p>
-              <button className="btn btn-warning btn-sm">view product</button>
+              <button className="btn btn-warning btn-sm" data-toggle="modal" data-target={`#${item.ref}`}>view product</button>
             </div>
           </div>
         </div>
       </div>
       {/* modal */}
+      <Modal item={item} count={count} addToCart={addToCart}/>
     </div>
   );
 };
 
 export const List = (props) => {
-  const { data, category } = props;
+  const { data, category, addToCart, count } = props;
   console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
-        {data.map((item) => <Card key={item.ref} item={item}/>)}
+        {data.map((item) => <Card key={item.ref} count={count} addToCart={addToCart} item={item}/>)}
       </div>
     </div>
   );
 };
 
-export const Modal = () => {
+export const Modal = ({item, addToCart, count}) => {
+  const [qty, setQty] = useState(1)
   return (
     <div
-      class="modal fade "
-      id=""
+    className="modal fade "
+      id={item.ref}
       data-backdrop="static"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Citrons</h5>
+      <div className="modal-dialog modal-xl" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="staticBackdropLabel">{item.name}</h5>
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <div className="row">
               <div className="col-sm-4">
                 <img
                   width="170"
                   height="170"
                   src={
-                    process.env.PUBLIC_URL +
-                    `/assets/0/citron.png`
+                    `/assets/${item.category}/${item.image}`
                   }
                   alt="Citron"
                 />
               </div>
 
               <div className="col-sm">
-                <p class="lead">
+                <p className="lead">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore
                 </p>
-                <h3 className="price">€1.99</h3> <br />
+                <h3 className="price">€{item.price}/{item.unit}</h3> <br />
                 <div
                   className="btn-group"
                   role="group"
                   aria-label="Basic example"
                 >
                   <button
+                    onClick={() => setQty(qty > 1 ? qty - 1 : qty)}
                     type="button"
                     className="btn btn-secondary">
                     -
                   </button>
-                  <span className="btn btn-light qty">1</span>
+                <span className="btn btn-light qty">{qty}</span>
                   <button
+                    onClick={() => setQty(qty + 1)}
                     type="button"
                     className="btn btn-secondary">
                     +
@@ -163,17 +168,18 @@ export const Modal = () => {
             </div>
           </div>
 
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               data-dismiss="modal">
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success"
+              className="btn btn-success"
               data-dismiss="modal"
+              onClick={() => addToCart(count + 1)}
             >
               Add to Cart
             </button>
