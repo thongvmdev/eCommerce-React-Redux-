@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 
 export const Navbar = ({filter, setFiltering, count}) => {
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
-      <a href="" className="navbar-brand crimson">
-        <i className="fas fa-shopping-cart"></i> Mes Courses en Ligne
-      </a>
+      <Link to="/" className="navbar-brand crimson"><i className="fas fa-shopping-cart"></i> Mes Courses en Ligne</Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -21,7 +20,7 @@ export const Navbar = ({filter, setFiltering, count}) => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <div className="ml-auto cart">
           <div>
-            <form className="search form-inline my-2 my-lg-0">
+            <form className="search form-inline my-2 my-lg-0"> 
               <input
                 className="form-control mr-sm-2"
                 type="search" 
@@ -37,7 +36,9 @@ export const Navbar = ({filter, setFiltering, count}) => {
           </div>
           <div className="menu-right">
             {/* cart */}
-            <i className="fas fa-shopping-bag fa-2x"></i> 
+            <Link to="/cart">
+              <i className="fas fa-shopping-bag fa-2x grey"></i>
+            </Link>
               <span className="badge badge-pill badge-success">{count}</span>
           </div>
         </div>
@@ -89,8 +90,8 @@ export const Card = (props) => {
 };
 
 export const List = (props) => {
-  const { data, category, addToCart, count } = props;
-  console.log(data)
+  const { data, addToCart, count } = props;
+  // console.log(data)
   return (
     <div className="col-sm">
       <div className="row">

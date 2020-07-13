@@ -18,7 +18,7 @@ export const Home = (props) => {
         <div className="container">
             <div className="row">
               <SideMenu localCategory={localCategory} category={category}/>
-              <List data={ isFiltering ? filtered : list[category]} category={category} count={count} addToCart={addToCart}/>
+              <List data={ isFiltering ? filtered : list[category]} count={count} addToCart={addToCart}/>
             </div>
         </div>
     )

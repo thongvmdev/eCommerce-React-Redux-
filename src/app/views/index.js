@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Navbar } from '../components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Cart } from './Cart'
+import { CartPage } from './Cart'
 import { Home } from './Home'
 import '../styles/App.css'
 import { list } from  "../data.js"
@@ -9,7 +9,7 @@ import { list } from  "../data.js"
 const App = () => {
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false) 
-  const [filtered, setFiltered] = useState()
+  const [filtered, setFiltered] = useState(null)
   const [count, setCount] = useState(1)
   const localCategory = (i) => {
     setCategory(i)
@@ -45,9 +45,10 @@ const App = () => {
                                                 isFiltering={isFiltering}
                                                 filtered={filtered}/>
                                                 }/>
-         <Route exact  path="/cart" component={Cart}/>
+         <Route exact  path="/cart" component={CartPage}/>
       </Router>
     </Fragment>
   );
 }
 export default App;
+
