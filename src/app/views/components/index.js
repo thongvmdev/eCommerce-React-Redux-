@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Navbar } from '../components'
+import { Navbar } from '../../components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { CartPage } from './Cart'
 import { Home } from './Home'
-import '../styles/App.css'
-import { list } from  "../data.js"
+import '../../styles/App.css'
+import { list } from  "../../data"
 
 const App = () => {
   const [category, setCategory] = useState(0)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from '../components'
+import { List } from '../../components'
 
 const SideMenu = ({ localCategory, category }) => {
     const links = ["Légumes", "Fruits", "Produits Frais", "Epicerie", "Boissons"]
