@@ -10,8 +10,8 @@ import { addToCart } from './app/lib/actions'
 // console.log(store.getState())
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
-store.dispatch(addToCart({name: "citron"}, 2))
-store.dispatch(addToCart({name: "kiwi"}, 5))
+// store.dispatch(addToCart({name: "citron"}, 2))
+// store.dispatch(addToCart({name: "kiwi"}, 5))
 unsubscribe()
 
 ReactDOM.render(

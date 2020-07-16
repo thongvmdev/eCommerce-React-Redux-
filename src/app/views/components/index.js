@@ -6,7 +6,8 @@ import { Home } from './Home'
 import '../../styles/App.css'
 import { list } from  "../../data"
 
-const App = () => {
+const App = props => {
+  const { items, onAddToCart, onUpdateCart } = props;
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false) 
   const [filtered, setFiltered] = useState(null)
@@ -17,7 +18,7 @@ const App = () => {
   const filterResults = (input) => { 
     let fullList = list.flat() // chuyen list(gom 5 mang con) thanh tap hon 38 phan tu trong 1 mang duy nhat
     let results = fullList.filter(item => {
-      const name = item.name.toLowerCase(); 
+      const name = item.name.toLowerCase();
       console.log(name);
       const term = input.toLowerCase();
       return name.indexOf(term) !== -1 
@@ -30,6 +31,16 @@ const App = () => {
     // setFiltering(!isFiltering)
   })
 
+  const add = (item, quantity) => {
+    onAddToCart(item, quantity)
+  }
+
+  const update = () => {
+    
+  }
+  
+  
+
   // console.log(filtered);
   return (
     <Fragment>
@@ -39,8 +50,10 @@ const App = () => {
          <Route exact path="/" component={() => <Home
                                                 category={category}
                                                 localCategory={localCategory}
-                                                addToCart={setCount}
-                                                count={count}
+                                                // addToCart={setCount}
+                                                addToCart={add}
+                                                updateToCart={update}
+                                                // count={count}
                                                 list={list}
                                                 isFiltering={isFiltering}
                                                 filtered={filtered}/>

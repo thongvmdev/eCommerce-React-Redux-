@@ -90,12 +90,12 @@ export const Card = (props) => {
 };
 
 export const List = (props) => {
-  const { data, addToCart, count } = props;
+  const { data, addToCart, updateCart } = props;
   // console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
-        {data.map((item) => <Card key={item.ref} count={count} addToCart={addToCart} item={item}/>)}
+        {data.map((item) => <Card key={item.ref} addToCart={addToCart} updateCart={updateCart} item={item}/>)}
       </div>
     </div>
   );
@@ -103,6 +103,7 @@ export const List = (props) => {
 
 export const Modal = ({item, addToCart, count}) => {
   const [qty, setQty] = useState(1)
+  console.log(item)
   return (
     <div
     className="modal fade "
@@ -180,7 +181,7 @@ export const Modal = ({item, addToCart, count}) => {
               type="button"
               className="btn btn-success"
               data-dismiss="modal"
-              onClick={() => addToCart(count + 1)}
+              onClick={() => addToCart(item, qty)}
             >
               Add to Cart
             </button>
