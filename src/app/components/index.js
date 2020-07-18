@@ -58,9 +58,9 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
-  const { item, addToCart, count } = props
-  // console.log(item)
-  return (
+  const { item, addToCart } = props
+  console.log(props);  
+return (
     <div className="col-sm-4">
       <div className="card">
         <img
@@ -84,14 +84,14 @@ export const Card = (props) => {
         </div>
       </div>
       {/* modal */}
-      <Modal item={item} count={count} addToCart={addToCart}/>
+      <Modal item={item} addToCart={addToCart}/>
     </div>
   );
 };
 
 export const List = (props) => {
   const { data, addToCart, updateCart } = props;
-  // console.log(data)
+  console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
@@ -101,7 +101,7 @@ export const List = (props) => {
   );
 };
 
-export const Modal = ({item, addToCart, count}) => {
+export const Modal = ({item, addToCart}) => {
   const [qty, setQty] = useState(1)
   console.log(item)
   return (

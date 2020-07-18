@@ -7,6 +7,7 @@ import '../../styles/App.css'
 import { list } from  "../../data"
 
 const App = props => {
+  console.log(props);
   const { items, onAddToCart, onUpdateCart } = props;
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false) 
@@ -36,10 +37,8 @@ const App = props => {
   }
 
   const update = () => {
-    
+    onUpdateCart()
   }
-  
-  
 
   // console.log(filtered);
   return (
