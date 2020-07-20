@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../lib/actions'
 
-export const Navbar = ({filter, setFiltering, count}) => {
+export const Navbar = ({filter, setFiltering}) => {
+  const items = useSelector(state => state.items);
+  console.log(items)
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <Link to="/" className="navbar-brand crimson"><i className="fas fa-shopping-cart"></i> Mes Courses en Ligne</Link>
@@ -39,7 +43,7 @@ export const Navbar = ({filter, setFiltering, count}) => {
             <Link to="/cart">
               <i className="fas fa-shopping-bag fa-2x grey"></i>
             </Link>
-              <span className="badge badge-pill badge-success">{count}</span>
+              <span className="badge badge-pill badge-success">{items.length > 0 && items.length}</span>
           </div>
         </div>
       </div>
@@ -58,7 +62,7 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
-  const { item, addToCart, count } = props
+  const { item, count } = props
   // console.log(item)
   return (
     <div className="col-sm-4">
@@ -84,7 +88,7 @@ export const Card = (props) => {
         </div>
       </div>
       {/* modal */}
-      <Modal item={item} count={count} addToCart={addToCart}/>
+      <Modal item={item} count={count}/>
     </div>
   );
 };
@@ -95,15 +99,20 @@ export const List = (props) => {
   return (
     <div className="col-sm">
       <div className="row">
-        {data.map((item) => <Card key={item.ref} addToCart={addToCart} updateCart={updateCart} item={item}/>)}
+        {data.map((item) => <Card key={item.ref} updateCart={updateCart} item={item}/>)}
       </div>
     </div>
   );
 };
 
-export const Modal = ({item, addToCart, count}) => {
+export const Modal = ({item}) => {
   const [qty, setQty] = useState(1)
-  console.log(item)
+  const dispatch = useDispatch();
+  const add = (item, quantity) => {
+    dispatch(addToCart(item, quantity))
+  }
+  
+  // console.log(item)
   return (
     <div
     className="modal fade "
@@ -181,7 +190,7 @@ export const Modal = ({item, addToCart, count}) => {
               type="button"
               className="btn btn-success"
               data-dismiss="modal"
-              onClick={() => addToCart(item, qty)}
+              onClick={() => add(item, qty)}
             >
               Add to Cart
             </button>

@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
 const Row = () => {
+  // const items = useSelector(state => state.items);
+  // useEffect(() => {
+  //   console.log(`You have ${items.length} in your cart`)
+  // })
     return (
       <tr>
         <td>
@@ -10,7 +15,7 @@ const Row = () => {
             width="70"
             height="70"
             src={process.env.PUBLIC_URL + `/assets/0/citron.png`}
-            alt="citrons"
+            alt="citrons"  
           />
         </td>
         <td>ref</td>

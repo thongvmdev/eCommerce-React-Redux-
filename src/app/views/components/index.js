@@ -7,7 +7,7 @@ import '../../styles/App.css'
 import { list } from  "../../data"
 
 const App = props => {
-  const { items, onAddToCart, onUpdateCart } = props;
+  const { items, onUpdateCart } = props;
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false) 
   const [filtered, setFiltered] = useState(null)
@@ -31,14 +31,9 @@ const App = props => {
     // setFiltering(!isFiltering)
   })
 
-  const add = (item, quantity) => {
-    onAddToCart(item, quantity)
-  }
-
   const update = () => {
     
   }
-  
   
 
   // console.log(filtered);
@@ -50,11 +45,8 @@ const App = props => {
          <Route exact path="/" component={() => <Home
                                                 category={category}
                                                 localCategory={localCategory}
-                                                // addToCart={setCount}
-                                                addToCart={add}
-                                                updateToCart={update}
-                                                // count={count}
-                                                list={list}
+                                                 updateToCart={update}
+                                                 list={list}
                                                 isFiltering={isFiltering}
                                                 filtered={filtered}/>
                                                 }/>
