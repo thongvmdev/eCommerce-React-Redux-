@@ -7,12 +7,8 @@ import '../../styles/App.css'
 import { list } from  "../../data"
 
 const App = props => {
-<<<<<<< HEAD
   const { items, onUpdateCart } = props;
-=======
-  console.log(props);
-  const { items, onAddToCart, onUpdateCart } = props;
->>>>>>> 5eeeb38d16e321d0ef0f0e9446ccaef68382ca0c
+
   const [category, setCategory] = useState(0)
   const [isFiltering, setFiltering] = useState(false) 
   const [filtered, setFiltered] = useState(null)
@@ -39,10 +35,7 @@ const App = props => {
   const update = () => {
     onUpdateCart()
   }
-<<<<<<< HEAD
-  
-=======
->>>>>>> 5eeeb38d16e321d0ef0f0e9446ccaef68382ca0c
+
 
   // console.log(filtered);
   return (
