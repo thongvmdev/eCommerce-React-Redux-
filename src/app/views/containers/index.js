@@ -5,7 +5,7 @@ import { updateCart } from '../../lib/actions'
 const mapStateToProps = (state) => {
     return {
         items: state.items
-    }   
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -15,5 +15,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
-
-

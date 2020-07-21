@@ -1,41 +1,59 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
+import { updateCart } from '../../lib/actions'
 import "../../styles/App.css";
 
-const Row = () => {
-  const items = useSelector(state => state.items);
-  useEffect(() => {
-    console.log(`You have ${items.length} in your cart`)
-  })
+const Row = (props) => {
+  const { quantity, details } = props.item
+  const item = details
+  const [ qty, setQty ] = useState(quantity);
+  const dispatch = useDispatch()
+  const update = (item, quantity) => {
+    console.log({item, quantity})
+    dispatch(updateCart(item, quantity))
+  }
     return (
+      
       <tr>
         <td>
           <img
             width="70"
             height="70"
-            src={process.env.PUBLIC_URL + `/assets/0/citron.png`}
-            alt="citrons"  
+            src={`/assets/${item.category}/${item.image}`}
+            alt={item.name}  
           />
         </td>
-        <td>ref</td>
-        <td>€price</td>
+        <td>{item.ref}</td>
+        <td>€{item.price}</td>
         <td>
           <div className="btn-group" role="group" aria-label="Basic example">
             <button
               type="button"
-              className="btn btn-secondary">
+              className="btn btn-secondary"
+              onClick={() => {
+                if (qty > 1) {
+                  setQty(qty - 1)
+                  update(item, qty)
+                }
+              }}  
+            >
               -
             </button>
-            <span className="btn btn-light">1</span>
+              <span className="btn btn-light">{qty}</span>
             <button
               type="button"
-              className="btn btn-secondary">
+              className="btn btn-secondary"
+              onClick={() => {
+                setQty(qty + 1)
+                update(item, qty)
+              }}  
+            >
               +
             </button>
           </div>
         </td>
-        <td>€2.99</td>
+          <td>€{ (quantity * item.price).toFixed(2) }</td>
         <td>
           <button
             type="button"
@@ -48,6 +66,11 @@ const Row = () => {
 }
 
 const Table = () => {
+  const items = useSelector(state => state.items);
+  console.log(items)
+  useEffect(() => {
+    console.log(`You have ${items.length} in your cart`)
+  })
     return (
       <table>
         <tr>
@@ -57,8 +80,9 @@ const Table = () => {
           <th width="150">Quantity</th>
           <th width="200">Total</th>
         </tr>
-        <Row/>
-        <Row/>
+        {
+          items.map((item, i) => <Row i={i} item={item}/>)
+        }
       </table>
     );
 }

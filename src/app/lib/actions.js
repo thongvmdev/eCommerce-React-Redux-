@@ -16,6 +16,7 @@ export function addToCart(item, quantity) {
 }
 
 export function updateCart(item, quantity) {
+    console.log({item, quantity})
     return {
         type: actions.UPDATE_CART,
         payload: {item: item, quantity: quantity}

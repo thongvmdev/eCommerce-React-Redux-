@@ -96,7 +96,7 @@ export const Card = (props) => {
 
 export const List = (props) => {
   const { data, addToCart, updateCart } = props;
-  console.log(data)
+  // console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
