@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
 const Row = () => {
-  // const items = useSelector(state => state.items);
-  // useEffect(() => {
-  //   console.log(`You have ${items.length} in your cart`)
-  // })
+  const items = useSelector(state => state.items);
+  useEffect(() => {
+    console.log(`You have ${items.length} in your cart`)
+  })
     return (
       <tr>
         <td>
@@ -113,4 +113,3 @@ export const CartPage = () => {
       </Fragment>
     );
 }
-

@@ -62,9 +62,15 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
+<<<<<<< HEAD
   const { item, count } = props
   // console.log(item)
   return (
+=======
+  const { item, addToCart } = props
+  console.log(props);  
+return (
+>>>>>>> 5eeeb38d16e321d0ef0f0e9446ccaef68382ca0c
     <div className="col-sm-4">
       <div className="card">
         <img
@@ -88,14 +94,18 @@ export const Card = (props) => {
         </div>
       </div>
       {/* modal */}
+<<<<<<< HEAD
       <Modal item={item} count={count}/>
+=======
+      <Modal item={item} addToCart={addToCart}/>
+>>>>>>> 5eeeb38d16e321d0ef0f0e9446ccaef68382ca0c
     </div>
   );
 };
 
 export const List = (props) => {
   const { data, addToCart, updateCart } = props;
-  // console.log(data)
+  console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
@@ -105,7 +115,11 @@ export const List = (props) => {
   );
 };
 
+<<<<<<< HEAD
 export const Modal = ({item}) => {
+=======
+export const Modal = ({item, addToCart}) => {
+>>>>>>> 5eeeb38d16e321d0ef0f0e9446ccaef68382ca0c
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch();
   const add = (item, quantity) => {
