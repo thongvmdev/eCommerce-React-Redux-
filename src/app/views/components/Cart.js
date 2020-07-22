@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
-import { updateCart } from '../../lib/actions'
+import { updateCart, removeFromCart } from '../../lib/actions'
 import "../../styles/App.css";
 
 const Row = (props) => {
@@ -10,11 +10,15 @@ const Row = (props) => {
   const [ qty, setQty ] = useState(quantity);
   const dispatch = useDispatch()
   const update = (item, quantity) => {
-    console.log({item, quantity})
     dispatch(updateCart(item, quantity))
   }
+
+  const remove = (item) => {
+    dispatch(removeFromCart(item))
+  }
+  
+  
     return (
-      
       <tr>
         <td>
           <img
@@ -33,8 +37,8 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 if (qty > 1) {
-                  setQty(qty - 1)
-                  update(item, qty)
+                  setQty(qty => qty - 1)
+                  update(props.item, qty)
                 }
               }}  
             >
@@ -46,8 +50,8 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 setQty(qty + 1)
-                update(item, qty)
-              }}  
+                update(props.item, qty)
+              }}
             >
               +
             </button>
@@ -57,7 +61,9 @@ const Row = (props) => {
         <td>
           <button
             type="button"
-            className="btn btn-danger remove">
+            className="btn btn-danger remove"
+            onClick={() => { remove(props.item) }}
+          >
             X
           </button>
         </td>
@@ -67,9 +73,8 @@ const Row = (props) => {
 
 const Table = () => {
   const items = useSelector(state => state.items);
-  console.log(items)
   useEffect(() => {
-    console.log(`You have ${items.length} in your cart`)
+    // console.log(`You have ${items.length} in your cart`)
   })
     return (
       <table>

@@ -5,7 +5,7 @@ import { addToCart } from '../lib/actions'
 
 export const Navbar = ({filter, setFiltering}) => {
   const items = useSelector(state => state.items);
-  console.log(items)
+  // console.log(items)
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <Link to="/" className="navbar-brand crimson"><i className="fas fa-shopping-cart"></i> Mes Courses en Ligne</Link>
