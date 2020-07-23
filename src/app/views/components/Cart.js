@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom";
 import { updateCart, removeFromCart } from '../../lib/actions'
 import "../../styles/App.css";
 
@@ -16,8 +15,6 @@ const Row = (props) => {
   const remove = (item) => {
     dispatch(removeFromCart(item))
   }
-  
-  
     return (
       <tr>
         <td>
@@ -71,11 +68,7 @@ const Row = (props) => {
     );
 }
 
-const Table = () => {
-  const items = useSelector(state => state.items);
-  useEffect(() => {
-    // console.log(`You have ${items.length} in your cart`)
-  })
+const Table = ({items}) => {
     return (
       <table>
         <tr>
@@ -93,12 +86,22 @@ const Table = () => {
 }
 
 export const CartPage = () => {
+  const items = useSelector(state => state.items);
+  const [ subTotal, setSubTotal] = useState(0.00);
+  const [ total, setTotal] = useState(0.00);
+  const shipping = 10.00;
+
+  useEffect(() => {
+    let totals = items.map(item => item.quantity * item.details.price)
+    setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0)) 
+    setTotal(subTotal + shipping)
+  })
     return (
       <Fragment>
         <div className="container">
             <div className="row">
             <div className="col-sm cart">
-                <Table/>
+                <Table items={items}/>
             </div>
             <div className="col-sm-3 order-summary">
                 <ul className="list-group">
@@ -106,24 +109,24 @@ export const CartPage = () => {
 
                 <li className="list-group-item">
                     <ul className="list-group flex">
-                    <li className="text-left">Subtotal</li>
-                    <li className="text-right">€0.00</li>
-                    </ul>
-                    <ul>
-                    <li className="text-left">shipping</li>
-                    <li className="text-right">€0.00</li>
+                      <li className="text-left">Subtotal</li>
+                      <li className="text-right">€{subTotal.toFixed(2)}</li>
                     </ul>
                     <ul className="list-group flex">
-                    <li className="coupon crimson">
-                        <small> >> Add Coupon Code</small>
-                    </li>
+                      <li className="text-left">shipping</li>
+                      <li className="text-right">€{shipping.toFixed(2)}</li>
+                    </ul>
+                    <ul className="list-group flex">
+                      <li className="coupon crimson">
+                          <small>Add Coupon Code</small>
+                      </li>
                     </ul>
                 </li>
 
                 <li className="list-group-item ">
                     <ul className="list-group flex">
                     <li className="text-left">Total</li>
-                    <li className="text-right">€0.00</li>
+                    <li className="text-right">€{subTotal == 0.00 ? "0.00" : total.toFixed(2)}</li>
                     </ul>
                 </li>
                 </ul>
