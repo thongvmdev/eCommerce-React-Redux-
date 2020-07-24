@@ -4,16 +4,17 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 import "../../styles/App.css";
 
 const Row = (props) => {
-  const { quantity, details } = props.item
+  console.log(props)
+  const { id, quantity, details } = props.item
   const item = details
   const [ qty, setQty ] = useState(quantity);
   const dispatch = useDispatch()
-  const update = (item, quantity) => {
-    dispatch(updateCart(item, quantity))
+  const update = (id, quantity) => {
+    dispatch(updateCart(id, quantity))
   }
 
-  const remove = (item) => {
-    dispatch(removeFromCart(item))
+  const remove = (id) => {
+    dispatch(removeFromCart(id))
   }
     return (
       <tr>
@@ -35,7 +36,7 @@ const Row = (props) => {
               onClick={() => {
                 if (qty > 1) {
                   setQty(qty => qty - 1)
-                  update(props.item, qty)
+                  update(id, quantity - 1)
                 }
               }}  
             >
@@ -47,7 +48,7 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 setQty(qty + 1)
-                update(props.item, qty)
+                update(id, quantity + 1)
               }}
             >
               +
@@ -92,10 +93,11 @@ export const CartPage = () => {
   const shipping = 10.00;
 
   useEffect(() => {
+    console.log('test rendering')
     let totals = items.map(item => item.quantity * item.details.price)
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0)) 
     setTotal(subTotal + shipping)
-  })
+  }, [items, subTotal, total]) // Why useEfect -> Neu ko use it, react chua render first, da change state -> error
     return (
       <Fragment>
         <div className="container">
@@ -126,7 +128,7 @@ export const CartPage = () => {
                 <li className="list-group-item ">
                     <ul className="list-group flex">
                     <li className="text-left">Total</li>
-                    <li className="text-right">€{subTotal == 0.00 ? "0.00" : total.toFixed(2)}</li>
+                    <li className="text-right">€{subTotal === 0.00 ? "0.00" : total.toFixed(2)}</li>
                     </ul>
                 </li>
                 </ul>

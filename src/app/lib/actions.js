@@ -15,11 +15,10 @@ export function addToCart(item, quantity) {
     }
 }
 
-export function updateCart(item, quantity) {
-    console.log({item, quantity})
+export function updateCart(id, quantity) {
     return {
         type: actions.UPDATE_CART,
-        payload: {item: item, quantity: quantity}
+        payload: {id: id, quantity: quantity}
     }
 }
 
