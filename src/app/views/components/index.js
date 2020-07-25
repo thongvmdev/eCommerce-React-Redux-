@@ -7,10 +7,9 @@ import '../../styles/App.css'
 import { list } from  "../../data"
 
 const App = props => {
-  const { items, onUpdateCart } = props;
-
+  const { items, saveLocalStorage } = props;
   const [category, setCategory] = useState(0)
-  const [isFiltering, setFiltering] = useState(false) 
+  const [isFiltering, setFiltering] = useState(false)
   const [filtered, setFiltered] = useState(null)
   const [count, setCount] = useState(1)
   const localCategory = (i) => {
@@ -20,7 +19,7 @@ const App = props => {
     let fullList = list.flat() // chuyen list(gom 5 mang con) thanh tap hon 38 phan tu trong 1 mang duy nhat
     let results = fullList.filter(item => {
       const name = item.name.toLowerCase();
-      console.log(name);
+      // console.log(name);
       const term = input.toLowerCase();
       return name.indexOf(term) !== -1 
     })
@@ -28,14 +27,10 @@ const App = props => {
   }
 
   useEffect(() => {
-    // console.log(isFiltering);
-    // setFiltering(!isFiltering)
-  })
+    saveLocalStorage(items)
+  }, [items])
 
-  const update = () => {
-    onUpdateCart()
-  }
-
+  
 
   // console.log(filtered);
   return (
@@ -46,8 +41,7 @@ const App = props => {
          <Route exact path="/" component={() => <Home
                                                 category={category}
                                                 localCategory={localCategory}
-                                                 updateToCart={update}
-                                                 list={list}
+                                                list={list}
                                                 isFiltering={isFiltering}
                                                 filtered={filtered}/>
                                                 }/>

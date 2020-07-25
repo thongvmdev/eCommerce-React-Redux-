@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const actions = {
     ADD_TO_CART: "ADD_TO_CART",
     UPDATE_CART: "UPDATE_CART",
-    REMOVE_FROM_CART: "REMOVE_FROM_CART"
+    REMOVE_FROM_CART: "REMOVE_FROM_CART",
+    SAVE_CART: "SAVE_CART"
 }
 
 /* Action Creators */ 
@@ -28,6 +29,15 @@ export function removeFromCart(item) {
         payload: item
     }
 }
+
+export function saveCart(items) {
+    return {
+        type: actions.SAVE_CART,
+        payload: { items: items }
+    }
+}
+
+
 
 // export const actions = {
 //     GET_ITEMS: "GET_ITEMS",

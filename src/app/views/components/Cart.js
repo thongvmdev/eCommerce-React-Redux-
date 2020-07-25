@@ -4,7 +4,7 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 import "../../styles/App.css";
 
 const Row = (props) => {
-  console.log(props)
+  // console.log(props)
   const { id, quantity, details } = props.item
   const item = details
   const [ qty, setQty ] = useState(quantity);
@@ -12,10 +12,16 @@ const Row = (props) => {
   const update = (id, quantity) => {
     dispatch(updateCart(id, quantity))
   }
-
+/* Prolems: Tai sao khi click, qty + 1 -> qua line update, qty ko update -> thieu 1 khi tinh so luong */
   const remove = (id) => {
     dispatch(removeFromCart(id))
   }
+
+  useEffect(() => {
+    // console.log(qty)
+    update(id, qty)
+  }, [qty])
+
     return (
       <tr>
         <td>
@@ -23,7 +29,7 @@ const Row = (props) => {
             width="70"
             height="70"
             src={`/assets/${item.category}/${item.image}`}
-            alt={item.name}  
+            alt={item.name}
           />
         </td>
         <td>{item.ref}</td>
@@ -35,8 +41,8 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 if (qty > 1) {
-                  setQty(qty => qty - 1)
-                  update(id, quantity - 1)
+                  setQty(qty - 1)
+                  // update(id, quantity - 1)
                 }
               }}  
             >
@@ -48,7 +54,7 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 setQty(qty + 1)
-                update(id, quantity + 1)
+                // update(id, quantity + 1)
               }}
             >
               +
@@ -93,7 +99,6 @@ export const CartPage = () => {
   const shipping = 10.00;
 
   useEffect(() => {
-    console.log('test rendering')
     let totals = items.map(item => item.quantity * item.details.price)
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0)) 
     setTotal(subTotal + shipping)

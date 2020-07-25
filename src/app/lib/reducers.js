@@ -1,7 +1,12 @@
 import { actions } from './actions'
 
 const initiaState = {
-    items: []
+    items: JSON.parse(localStorage.getItem('items')) !== null
+    ? JSON.parse(localStorage.getItem('items'))
+    : []
+}
+const saveToLocalStorage = object => {
+    localStorage.setItem('items', JSON.stringify(object))
 }
 
 export default function onlineStoreApp(state = initiaState, action) {
@@ -20,6 +25,10 @@ export default function onlineStoreApp(state = initiaState, action) {
         case actions.REMOVE_FROM_CART: return Object.assign({}, state, {
             items: state.items.filter(item => { return item.id !== action.payload.id })
         })
+        case actions.SAVE_CART: 
+            saveToLocalStorage(action.payload.items)
+            console.log({state, initiaState})
+            return state
         default: return state
     }
 }
