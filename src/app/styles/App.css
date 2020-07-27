@@ -137,6 +137,7 @@ footer {
 }
 .checkout {
   margin-top: 5px;
+  color: #eee !important;
 }
 .coupon {
   color: green;

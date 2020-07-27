@@ -5,6 +5,7 @@ import { CartPage } from './Cart'
 import { Home } from './Home'
 import '../../styles/App.css'
 import { list } from  "../../data"
+import { Checkout } from './Checkout';
 
 const App = props => {
   const { items, saveLocalStorage } = props;
@@ -46,6 +47,7 @@ const App = props => {
                                                 filtered={filtered}/>
                                                 }/>
          <Route exact  path="/cart" component={CartPage}/>
+         <Route exact  path="/checkout" component={Checkout}/>
       </Router>
     </Fragment>
   );
