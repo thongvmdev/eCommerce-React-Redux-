@@ -6,6 +6,7 @@ import { Home } from './Home'
 import '../../styles/App.css'
 import { list } from  "../../data"
 import { Checkout } from './Checkout';
+import UserProfileContextProvider, { UserProfileContext } from '../../lib/UserProfileContext'
 
 const App = props => {
   const { items, saveLocalStorage } = props;
@@ -37,17 +38,19 @@ const App = props => {
   return (
     <Fragment>
       <Router>
-        <Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>
-         {/* Routes */}
-         <Route exact path="/" component={() => <Home
-                                                category={category}
-                                                localCategory={localCategory}
-                                                list={list}
-                                                isFiltering={isFiltering}
-                                                filtered={filtered}/>
-                                                }/>
-         <Route exact  path="/cart" component={CartPage}/>
-         <Route exact  path="/checkout" component={Checkout}/>
+        <UserProfileContextProvider>
+          <Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>
+          {/* Routes */}
+          <Route exact path="/" component={() => <Home
+                                                  category={category}
+                                                  localCategory={localCategory}
+                                                  list={list}
+                                                  isFiltering={isFiltering}
+                                                  filtered={filtered}/>
+                                                  }/>
+          <Route exact  path="/cart" component={CartPage}/>
+          <Route exact  path="/checkout" component={Checkout}/>
+         </UserProfileContextProvider>
       </Router>
     </Fragment>
   );

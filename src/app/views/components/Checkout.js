@@ -1,9 +1,20 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { UserProfileContext } from '../../lib/UserProfileContext'
 import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
 export const Checkout = () => {
     const [isValid, setValid] = useState(false);
+    const value = useContext(UserProfileContext);
+    const {
+      firstName,
+      lastName,
+      email,
+      address,
+      zipCode,
+      city,
+      setUserProfileContext
+    } = value;
     const validate = () => {
       let errors = []
       const inputs = document.querySelectorAll('.form-control')
@@ -11,7 +22,6 @@ export const Checkout = () => {
         console.log()
         !input.value ? errors.push(input) : errors.length && errors.pop()
       })
-      console.log(errors)
       setValid(!errors.length)
     }
 
@@ -32,7 +42,9 @@ export const Checkout = () => {
                   className="form-control"
                   placeholder="First name"
                   property=""
-                  defaultValue="" />
+                  defaultValue="" 
+                  onChange={(e) => setUserProfileContext({firstName: e.target.value})}  
+                />
               </div>
               <div className="col">
                 <input
@@ -40,7 +52,9 @@ export const Checkout = () => {
                   className="form-control"
                   placeholder="Last name"
                   property=""
-                  defaultValue=""/>
+                  defaultValue=""
+                  onChange={(e) => setUserProfileContext({lastName: e.target.value})}
+                />
               </div>
             </div>
             <br />

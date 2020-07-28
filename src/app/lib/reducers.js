@@ -14,7 +14,6 @@ export default function onlineStoreApp(state = initiaState, action) {
         case actions.ADD_TO_CART:
             return Object.assign({}, state, {items: [...state.items, action.payload]});
         case actions.UPDATE_CART: 
-        console.log(action)
             return Object.assign({}, state, {
                 items: state.items.map(item => {
                     return item.id === action.payload.id
@@ -27,9 +26,10 @@ export default function onlineStoreApp(state = initiaState, action) {
         })
         case actions.SAVE_CART: 
             saveToLocalStorage(action.payload.items)
-            console.log({state, initiaState})
             return state
-        default: return state
+        default: 
+            console.log('test default') 
+            return state
     }
 }
 
