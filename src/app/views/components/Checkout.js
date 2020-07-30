@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { UserProfileContext } from '../../lib/UserProfileContext'
-import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
 export const Checkout = () => {
@@ -41,9 +40,10 @@ export const Checkout = () => {
                   type="text"
                   className="form-control"
                   placeholder="First name"
+                  name="firstName"
                   property=""
                   defaultValue="" 
-                  onChange={(e) => setUserProfileContext({firstName: e.target.value})}  
+                  onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}  
                 />
               </div>
               <div className="col">
@@ -51,9 +51,10 @@ export const Checkout = () => {
                   type="text"
                   className="form-control"
                   placeholder="Last name"
+                  name="lastName"
                   property=""
                   defaultValue=""
-                  onChange={(e) => setUserProfileContext({lastName: e.target.value})}
+                  onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}
                 />
               </div>
             </div>

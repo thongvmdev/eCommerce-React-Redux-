@@ -19,15 +19,13 @@ const UserProfileContextProvider = ({children}) => {
         address: "",
         zipCode: "",
         city: "",
-        setUserProfileContext: info => setUserProfile(prevState => ({
+        setUserProfileContext: info => setUserProfile(prevState => {
+            console.log([Object.keys(info)][0]);
+            console.log(Object.keys(info));
+            return {
             ...prevState,
-            firstName: info.firstName,
-            lastName: info.lastName,
-            email: info.email,
-            address: info.address,
-            zipCode: info.zipCode,
-            city: info.city
-        }))
+            [Object.keys(info)]: Object.values(info)[0]
+        }})
     }
     const [userProfile, setUserProfile] = useState(userProfileState);
     return (<UserProfileContext.Provider value={userProfile}>{children}</UserProfileContext.Provider>)

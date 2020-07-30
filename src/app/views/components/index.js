@@ -6,7 +6,7 @@ import { Home } from './Home'
 import '../../styles/App.css'
 import { list } from  "../../data"
 import { Checkout } from './Checkout';
-import UserProfileContextProvider, { UserProfileContext } from '../../lib/UserProfileContext'
+import UserProfileContextProvider from '../../lib/UserProfileContext'
 
 const App = props => {
   const { items, saveLocalStorage } = props;
