@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { UserProfileContext } from '../../lib/UserProfileContext'
+import { Link } from 'react-router-dom'
 import "../../styles/App.css";
 
 export const Checkout = () => {
@@ -42,7 +43,7 @@ export const Checkout = () => {
                   placeholder="First name"
                   name="firstName"
                   property=""
-                  defaultValue="" 
+                  defaultValue={firstName} // Khi go duoc 1 feild, chuyen qua route khac roi quay lai gia tri da go van con, neu lam nhu vay se mat.
                   onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}  
                 />
               </div>
@@ -53,7 +54,7 @@ export const Checkout = () => {
                   placeholder="Last name"
                   name="lastName"
                   property=""
-                  defaultValue=""
+                  defaultValue={lastName}
                   onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}
                 />
               </div>
@@ -65,8 +66,11 @@ export const Checkout = () => {
                 className="form-control"
                 id="exampleInputEmail1"
                 placeholder="Email address"
+                name="email"
                 property=""
-                defaultValue=""/>
+                defaultValue={email}
+                onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}
+              />
               <small id="emailHelp" className="form-text text-muted">
                 We'll never share your email with anyone else.
               </small>
@@ -77,8 +81,11 @@ export const Checkout = () => {
                 className="form-control"
                 id="exampleInputEmail1"
                 placeholder="Address"
+                name="address"
                 property=""
-                defaultValue="" />
+                defaultValue={address}
+                onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}  
+              />
             </div>
             <div className="row">
               <div className="col">
@@ -86,22 +93,28 @@ export const Checkout = () => {
                   type="text"
                   className="form-control"
                   placeholder="Postal Code"
+                  name="zipCode"
                   property=""
-                  defaultValue="" />
+                  defaultValue={zipCode}
+                  onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}  
+                />
               </div>
               <div className="col">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="City"
+                  name="city"
                   property=""
-                  defaultValue="" />
+                  defaultValue={city}
+                  onChange={(e) => setUserProfileContext({[e.target.name]: e.target.value})}  
+                />
               </div>
             </div>
             <br />
-              <a href="#" className={`${!isValid && 'disabled'} white btn btn-light btn-lg btn-block checkout bg-crimson`}>
+              <Link to="/delivery" className={`${!isValid && 'disabled'} white btn btn-light btn-lg btn-block checkout bg-crimson`}>
                 Confirm
-              </a>
+              </Link>
           </form>
         </div>
       </Fragment>

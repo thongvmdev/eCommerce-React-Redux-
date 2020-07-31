@@ -6,6 +6,7 @@ import { Home } from './Home'
 import '../../styles/App.css'
 import { list } from  "../../data"
 import { Checkout } from './Checkout';
+import { Confirm } from './confirm'
 import UserProfileContextProvider from '../../lib/UserProfileContext'
 
 const App = props => {
@@ -50,6 +51,7 @@ const App = props => {
                                                   }/>
           <Route exact  path="/cart" component={CartPage}/>
           <Route exact  path="/checkout" component={Checkout}/>
+          <Route exact  path="/delivery" component={Confirm}/>
          </UserProfileContextProvider>
       </Router>
     </Fragment>
