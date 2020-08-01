@@ -5,7 +5,8 @@ import "../../styles/App.css";
 
 export const Checkout = () => {
     const [isValid, setValid] = useState(false);
-    const value = useContext(UserProfileContext);
+    const value = useContext(UserProfileContext); // It's consumer
+    console.log(value)
     const {
       firstName,
       lastName,
@@ -120,3 +121,4 @@ export const Checkout = () => {
       </Fragment>
     );
 }
+

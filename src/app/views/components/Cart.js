@@ -4,6 +4,7 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 import { Link } from "react-router-dom";
 import "../../styles/App.css";
 
+
 const Row = (props) => {
   // console.log(props)
   const { id, quantity, details } = props.item
@@ -99,6 +100,7 @@ export const CartPage = () => {
   const [ total, setTotal] = useState(0.00);
   const shipping = 10.00;
 
+
   useEffect(() => {
     let totals = items.map(item => item.quantity * item.details.price)
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0)) 
@@ -138,7 +140,7 @@ export const CartPage = () => {
                     </ul>
                 </li>
                 </ul>
-                <Link to="checkout" className={`btn btn-light ${!items.length && 'disabled'} btn-lg btn-block checkout bg-crimson`}
+                <Link to="/checkout" className={`btn btn-light ${!items.length && 'disabled'} btn-lg btn-block checkout bg-crimson`}
                 >
                   Checkout 
                 </Link>
