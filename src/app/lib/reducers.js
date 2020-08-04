@@ -10,6 +10,7 @@ const saveToLocalStorage = object => {
 }
 
 export default function onlineStoreApp(state = initiaState, action) {
+    console.log(state)
     switch (action.type) {
         case actions.ADD_TO_CART:
             return Object.assign({}, state, {items: [...state.items, action.payload]});

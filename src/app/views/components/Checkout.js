@@ -6,7 +6,6 @@ import "../../styles/App.css";
 export const Checkout = () => {
     const [isValid, setValid] = useState(false);
     const value = useContext(UserProfileContext); // It's consumer
-    console.log(value)
     const {
       firstName,
       lastName,
@@ -20,7 +19,6 @@ export const Checkout = () => {
       let errors = []
       const inputs = document.querySelectorAll('.form-control')
       inputs.forEach(input => {
-        console.log()
         !input.value ? errors.push(input) : errors.length && errors.pop()
       })
       setValid(!errors.length)

@@ -1,17 +1,10 @@
 import React from 'react'
 import { createContext, useState } from 'react';
 
-export const UserProfileContext = createContext({
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-    zipCode: "",
-    city: "",
-    setUserProfileContext: info => {}
-});
+export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({children}) => {
+    console.log(children)
     const userProfileState = {
         firstName: "",
         lastName: "",
