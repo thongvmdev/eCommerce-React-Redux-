@@ -1,4 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux'
+import { saveCart } from '../../lib/actions'
+
 import { Navbar } from '../../components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { CartPage } from './Cart'
@@ -30,11 +33,9 @@ const App = props => {
   }
 
   useEffect(() => {
+    console.log('Test useEfect')
     saveLocalStorage(items)
   }, [items])
-
-  
-
   // console.log(filtered);
   return (
     <Fragment>
@@ -57,5 +58,20 @@ const App = props => {
     </Fragment>
   );
 }
-export default App;
+
+  const mapStateToProps = (state) => {
+    return {
+        items: state.items
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        saveLocalStorage:  items => { dispatch(saveCart(items)) }
+    } 
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+  /* Cach khac */
+  // export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
