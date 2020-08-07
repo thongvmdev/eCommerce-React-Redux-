@@ -8,7 +8,6 @@ import App from './app/views/components'
 ReactDOM.render(
     <Provider store={store}>
         <App />
-        {/* <AppContainer/> */}
     </Provider>
     , document.getElementById("root")
 );

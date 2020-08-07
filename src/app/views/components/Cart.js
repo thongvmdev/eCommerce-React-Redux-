@@ -15,8 +15,8 @@ const Row = (props) => {
     dispatch(updateCart(id, quantity))
   }
 /* Prolems: Tai sao khi click, qty + 1 -> qua line update, qty ko update -> thieu 1 khi tinh so luong */
-  const remove = (id) => {
-    dispatch(removeFromCart(id))
+  const remove = (item) => {
+    dispatch(removeFromCart(item))
   }
 
   useEffect(() => {

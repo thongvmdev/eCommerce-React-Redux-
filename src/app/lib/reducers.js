@@ -23,7 +23,7 @@ export default function onlineStoreApp(state = initiaState, action) {
         case actions.REMOVE_FROM_CART: 
             return {...state, items: state.items.filter(item => { return item.id !== action.payload.id })}
         case actions.SAVE_CART: 
-            saveToLocalStorage(action.payload.items)
+            saveToLocalStorage(action.payload.items)    
             console.log(state)
             return state
         case actions.RESET_CART: 

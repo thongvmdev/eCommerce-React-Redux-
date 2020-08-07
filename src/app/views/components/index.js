@@ -25,7 +25,6 @@ const App = props => {
     let fullList = list.flat() // chuyen list(gom 5 mang con) thanh tap hon 38 phan tu trong 1 mang duy nhat
     let results = fullList.filter(item => {
       const name = item.name.toLowerCase();
-      // console.log(name);
       const term = input.toLowerCase();
       return name.indexOf(term) !== -1 
     })
@@ -33,10 +32,9 @@ const App = props => {
   }
 
   useEffect(() => {
-    console.log('Test useEfect')
     saveLocalStorage(items)
   }, [items])
-  // console.log(filtered);
+  
   return (
     <Fragment>
       <Router>
