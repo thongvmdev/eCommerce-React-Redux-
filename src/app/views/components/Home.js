@@ -13,13 +13,13 @@ const SideMenu = ({ localCategory, category }) => {
 }
 
 export const Home = (props) => {
-    const { category, localCategory, updateToCart, list, isFiltering, filtered  } = props;
+    const { category, localCategory, list, isFiltering, filtered  } = props;
     return(
         <div className="container">
             <div className="row">
               <SideMenu localCategory={localCategory} category={category}/>
               {/* <List data={ isFiltering ? filtered : list[category]} count={count} addToCart={addToCart}/> */}
-              <List data={ isFiltering ? filtered : list[category]} updateToCart={updateToCart}/>
+              <List data={ isFiltering ? filtered : list[category]}/>
             </div>
         </div>
     )

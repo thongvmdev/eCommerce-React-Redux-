@@ -5,7 +5,6 @@ import { addToCart } from '../lib/actions'
 
 export const Navbar = ({filter, setFiltering}) => {
   const items = useSelector(state => state.items);
-  // console.log(items)
   return (
     <nav className="navbar orange navbar-expand-lg navbar-light bg-light fixed-top">
       <Link to="/" className="navbar-brand crimson"><i className="fas fa-shopping-cart"></i> Mes Courses en Ligne</Link>
@@ -62,7 +61,7 @@ export const Footer = () => {
 };
 
 export const Card = (props) => {
-  const { item, count } = props
+  const { item } = props
   // console.log(item)
   return (
 
@@ -89,18 +88,17 @@ export const Card = (props) => {
         </div>
       </div>
       {/* modal */}
-      <Modal item={item} count={count}/>
+      <Modal item={item}/>
     </div>
   );
 };
 
 export const List = (props) => {
-  const { data, addToCart, updateCart } = props;
-  // console.log(data)
+  const { data } = props;
   return (
     <div className="col-sm">
       <div className="row">
-        {data.map((item) => <Card key={item.ref} updateCart={updateCart} item={item}/>)}
+        {data.map((item) => <Card key={item.ref} item={item}/>)}
       </div>
     </div>
   );
@@ -112,9 +110,7 @@ export const Modal = ({item}) => {
   const add = (item, quantity) => {
     dispatch(addToCart(item, quantity))
   }
-  
-  // console.log(item)
-  return (
+    return (
     <div
     className="modal fade "
       id={item.ref}

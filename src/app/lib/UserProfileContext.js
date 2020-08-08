@@ -4,7 +4,6 @@ import { createContext, useState } from 'react';
 export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({children}) => {
-    console.log(children)
     const userProfileState = {
         firstName: "",
         lastName: "",

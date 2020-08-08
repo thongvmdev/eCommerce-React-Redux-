@@ -14,10 +14,9 @@ import UserProfileContextProvider from '../../lib/UserProfileContext'
 
 const App = props => {
   const { items, saveLocalStorage } = props;
-  const [category, setCategory] = useState(0)
-  const [isFiltering, setFiltering] = useState(false)
-  const [filtered, setFiltered] = useState(null)
-  const [count, setCount] = useState(1)
+  const [category, setCategory] = useState(0) // To view page theo list & active item is clicked
+  const [isFiltering, setFiltering] = useState(false) // Purpose? dung de hien thi view in normal or filter
+  const [filtered, setFiltered] = useState(null) // Lay ket qua filter, pass to List Component
   const localCategory = (i) => {
     setCategory(i)
   }
@@ -26,7 +25,7 @@ const App = props => {
     let results = fullList.filter(item => {
       const name = item.name.toLowerCase();
       const term = input.toLowerCase();
-      return name.indexOf(term) !== -1 
+      return name.indexOf(term) !== -1
     })
     setFiltered(results)
   }
@@ -37,9 +36,9 @@ const App = props => {
   
   return (
     <Fragment>
-      <Router>
+      <Router> 
         <UserProfileContextProvider>
-          <Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>
+          <Navbar filter={filterResults} setFiltering={setFiltering}/>
           {/* Routes */}
           <Route exact path="/" component={() => <Home
                                                   category={category}
