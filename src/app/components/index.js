@@ -62,7 +62,6 @@ export const Footer = () => {
 
 export const Card = (props) => {
   const { item } = props
-  // console.log(item)
   return (
 
     <div className="col-sm-4">
@@ -112,7 +111,7 @@ export const Modal = ({item}) => {
   }
     return (
     <div
-    className="modal fade "
+    className="modal fade"
       id={item.ref}
       data-backdrop="static"
       tabIndex="-1"

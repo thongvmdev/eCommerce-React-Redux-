@@ -13,13 +13,11 @@ import { Confirm } from './confirm'
 import UserProfileContextProvider from '../../lib/UserProfileContext'
 
 const App = props => {
-  const { items, saveLocalStorage } = props;
+  const { items, saveLocalStorage } = props; // Khi connect Redux -> state dc pass qua nhu props
   const [category, setCategory] = useState(0) // To view page theo list & active item is clicked
   const [isFiltering, setFiltering] = useState(false) // Purpose? dung de hien thi view in normal or filter
   const [filtered, setFiltered] = useState(null) // Lay ket qua filter, pass to List Component
-  const localCategory = (i) => {
-    setCategory(i)
-  }
+  
   const filterResults = (input) => { 
     let fullList = list.flat() // chuyen list(gom 5 mang con) thanh tap hon 38 phan tu trong 1 mang duy nhat
     let results = fullList.filter(item => {
@@ -42,7 +40,7 @@ const App = props => {
           {/* Routes */}
           <Route exact path="/" component={() => <Home
                                                   category={category}
-                                                  localCategory={localCategory}
+                                                  setCategory={setCategory}
                                                   list={list}
                                                   isFiltering={isFiltering}
                                                   filtered={filtered}/>
