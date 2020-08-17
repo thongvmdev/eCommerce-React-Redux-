@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCart, removeFromCart } from '../../lib/actions'
 import { Link } from "react-router-dom";
@@ -6,23 +6,15 @@ import "../../styles/App.css";
 
 
 const Row = (props) => {
-  // console.log(props)
   const { id, quantity, details } = props.item
   const item = details
   const [ qty, setQty ] = useState(quantity);
   const dispatch = useDispatch()
-  const update = (id, quantity) => {
-    dispatch(updateCart(id, quantity))
-  }
-/* Prolems: Tai sao khi click, qty + 1 -> qua line update, qty ko update -> thieu 1 khi tinh so luong */
-  const remove = (item) => {
-    dispatch(removeFromCart(item))
-  }
 
-  useEffect(() => {
-    // console.log(qty)
-    update(id, qty)
-  }, [qty])
+  // useEffect(() => {
+  //   // console.log(qty)
+  //   update(id, qty)
+  // }, [qty])
 
     return (
       <tr>
@@ -44,7 +36,7 @@ const Row = (props) => {
               onClick={() => {
                 if (qty > 1) {
                   setQty(qty - 1)
-                  // update(id, quantity - 1)
+                  dispatch(updateCart(id, quantity - 1))
                 }
               }}  
             >
@@ -56,7 +48,7 @@ const Row = (props) => {
               className="btn btn-secondary"
               onClick={() => {
                 setQty(qty + 1)
-                // update(id, quantity + 1)
+                dispatch(updateCart(id, quantity + 1))
               }}
             >
               +
@@ -68,7 +60,7 @@ const Row = (props) => {
           <button
             type="button"
             className="btn btn-danger remove"
-            onClick={() => { remove(props.item) }}
+            onClick={() =>  dispatch(removeFromCart(props.item))}
           >
             X
           </button>
@@ -88,7 +80,7 @@ const Table = ({items}) => {
           <th width="200">Total</th>
         </tr>
         {
-          items.map((item, i) => <Row i={i} item={item}/>)
+          items.map((item) => <Row key={item.id} item={item}/> )
         }
       </table>
     );
@@ -100,14 +92,13 @@ export const CartPage = () => {
   const [ total, setTotal] = useState(0.00);
   const shipping = 10.00;
 
-
   useEffect(() => {
     let totals = items.map(item => item.quantity * item.details.price)
+    console.log(totals)
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0)) 
     setTotal(subTotal + shipping)
   }, [items, subTotal, total]) // Why useEfect -> Neu ko use it, react chua render first, da change state -> error
     return (
-      <Fragment>
         <div className="container">
             <div className="row">
             <div className="col-sm cart">
@@ -147,6 +138,5 @@ export const CartPage = () => {
             </div>
             </div>
         </div>
-      </Fragment>
     );
 }

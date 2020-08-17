@@ -29,7 +29,6 @@ export default function onlineStoreApp(state = initiaState, action) {
             saveToLocalStorage([]) // Clear LocalStorage
             return {...state, items: []} // Clear State
         default: 
-            // console.log('test default') 
             return state
     }
 }

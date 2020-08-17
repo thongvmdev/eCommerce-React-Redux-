@@ -33,7 +33,7 @@ export const Navbar = ({filter, setFiltering}) => {
                   // console.log(e.target.value.length)
                   setFiltering(e.target.value.length > 0)
                   filter(e.target.value)
-                }}  
+                }}
               />
             </form>
           </div>
@@ -94,6 +94,7 @@ export const Card = (props) => {
 
 export const List = (props) => {
   const { data } = props;
+  console.log(data)
   return (
     <div className="col-sm">
       <div className="row">
@@ -106,9 +107,6 @@ export const List = (props) => {
 export const Modal = ({item}) => {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch();
-  const add = (item, quantity) => {
-    dispatch(addToCart(item, quantity))
-  }
     return (
     <div
     className="modal fade"
@@ -186,7 +184,7 @@ export const Modal = ({item}) => {
               type="button"
               className="btn btn-success"
               data-dismiss="modal"
-              onClick={() => add(item, qty)}
+              onClick={() => dispatch(addToCart(item, qty))}
             >
               Add to Cart
             </button>

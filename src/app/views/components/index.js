@@ -35,7 +35,6 @@ const App = props => {
   return (
     <Fragment>
       <Router> 
-        <UserProfileContextProvider>
           <Navbar filter={filterResults} setFiltering={setFiltering}/>
           {/* Routes */}
           <Route exact path="/" component={() => <Home
@@ -46,6 +45,7 @@ const App = props => {
                                                   filtered={filtered}/>
                                                   }/>
           <Route exact  path="/cart" component={CartPage}/>
+        <UserProfileContextProvider>
           <Route exact  path="/checkout" component={Checkout}/>
           <Route exact  path="/delivery" component={Confirm}/>
          </UserProfileContextProvider>

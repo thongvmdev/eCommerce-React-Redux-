@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { UserProfileContext } from "../../lib/UserProfileContext";
@@ -9,11 +9,7 @@ export const Confirm = () => {
     const useProfile = useContext(UserProfileContext)
     const disPatch = useDispatch();
 
-    const reset = () => {
-        disPatch(resetCart())
-    }
     return (
-        <Fragment>
             <div className="jumbotron text-center">
                 <h1 className="display-3">Thank You!</h1>
                 <hr />
@@ -21,7 +17,7 @@ export const Confirm = () => {
                 <p className="lead">
                 <strong>Your order is on its way to your home</strong>
                 <br /> <br />
-                <Link className="btn btn-primary btn-sm" to="/" onClick={() => reset()} >
+                <Link className="btn btn-primary btn-sm" to="/" onClick={() => disPatch(resetCart())} >
                     Continue to homepage
                 </Link>
                 </p>
@@ -36,6 +32,5 @@ export const Confirm = () => {
                     </ul>
                }
             </div>
-        </Fragment>
     );
 }

@@ -12,10 +12,11 @@ const UserProfileContextProvider = ({children}) => {
         zipCode: "",
         city: "",
         setUserProfileContext: info => setUserProfile(prevState => {
+            console.log(prevState)
             const key = Object.keys(info)
             return {
             ...prevState,
-            [key]: Object.values(info)[0] // Why co dau ngoac vuong [Object.keys(info)] -> vi muon su dung mot bien o vi tri nay thi phai co dau ngoac, neu ko no se hieu ten bien la ten thuoc tinh luon.
+            [key]: Object.values(info)[0]
         }})
     }
     const [userProfile, setUserProfile] = useState(userProfileState);
