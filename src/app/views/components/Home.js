@@ -6,7 +6,9 @@ const SideMenu = ({ setCategory, category }) => {
     return (
       <div className="col-sm-2 sidebar">
         <ul>
-          {links.map((link, index) => <li className={category === index ? 'active' : undefined} onClick={() => setCategory(index)} key={index}>{link}</li>)}
+          {
+             links.map((link, index) => <li className={category === index ? 'active' : undefined} onClick={() => setCategory(index)} key={index}>{link}</li>)
+          }
         </ul>
       </div>
     )

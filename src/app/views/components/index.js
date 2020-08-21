@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { saveCart } from '../../lib/actions'
 
@@ -33,7 +33,6 @@ const App = props => {
   }, [items])
   
   return (
-    <Fragment>
       <Router> 
           <Navbar filter={filterResults} setFiltering={setFiltering}/>
           {/* Routes */}
@@ -50,7 +49,6 @@ const App = props => {
           <Route exact  path="/delivery" component={Confirm}/>
          </UserProfileContextProvider>
       </Router>
-    </Fragment>
   );
 }
 

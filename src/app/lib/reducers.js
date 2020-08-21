@@ -10,10 +10,11 @@ const saveToLocalStorage = object => {
 }
 
 export default function onlineStoreApp(state = initiaState, action) {
-    // console.log(state)
+    console.log(state)
+    console.log(action)
     switch (action.type) {
         case actions.ADD_TO_CART:
-            return {...state, items: [...state.items, action.payload]};
+            return {...state, items: [...state.items, action.payload]}; // ...state copy all state prev, ...state.items copy all state.items, action.payload update state.items
         case actions.UPDATE_CART: 
             return {...state, items: state.items.map(item => {
                 return item.id === action.payload.id
@@ -23,7 +24,7 @@ export default function onlineStoreApp(state = initiaState, action) {
         case actions.REMOVE_FROM_CART: 
             return {...state, items: state.items.filter(item => { return item.id !== action.payload.id })}
         case actions.SAVE_CART: 
-            saveToLocalStorage(action.payload.items)    
+            saveToLocalStorage(action.payload.items)
             return state
         case actions.RESET_CART: 
             saveToLocalStorage([]) // Clear LocalStorage

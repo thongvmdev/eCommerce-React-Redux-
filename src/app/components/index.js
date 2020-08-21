@@ -94,7 +94,6 @@ export const Card = (props) => {
 
 export const List = (props) => {
   const { data } = props;
-  console.log(data)
   return (
     <div className="col-sm">
       <div className="row">

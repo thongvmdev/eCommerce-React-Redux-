@@ -7,6 +7,7 @@ import "../../styles/App.css";
 
 const Row = (props) => {
   const { id, quantity, details } = props.item
+  console.log(props.item)
   const item = details
   const [ qty, setQty ] = useState(quantity);
   const dispatch = useDispatch()
