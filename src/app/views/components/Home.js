@@ -7,7 +7,9 @@ const SideMenu = ({ setCategory, category }) => {
       <div className="col-sm-2 sidebar">
         <ul>
           {
-             links.map((link, index) => <li className={category === index ? 'active' : undefined} onClick={() => setCategory(index)} key={index}>{link}</li>)
+             links.map((link, index) => {
+               return <li className={category === index ? 'active' : undefined} onClick={() => setCategory(index)} key={index}>{link}</li>
+             })
           }
         </ul>
       </div>
@@ -17,7 +19,7 @@ const SideMenu = ({ setCategory, category }) => {
 export const Home = (props) => {
     const { category, setCategory, list, isFiltering, filtered  } = props;
     return(
-        <div className="container">
+   <div className="container">
             <div className="row">
               <SideMenu setCategory={setCategory} category={category}/>
               <List data={ isFiltering ? filtered : list[category]}/>

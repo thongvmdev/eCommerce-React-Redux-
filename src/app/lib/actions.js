@@ -13,7 +13,7 @@ export const actions = {
 export function addToCart(item, quantity) {
     return {
         type: actions.ADD_TO_CART,
-        payload: { id: uuidv4(), quantity: quantity, details: item}
+        payload: { id: uuidv4(), quantity: quantity, details: item }
     }
 }
 
