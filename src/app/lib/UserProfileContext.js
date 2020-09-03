@@ -4,24 +4,23 @@ import { createContext, useState } from 'react';
 export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({ children }) => {
-  const userProfileState = {
+  const [userProfile, setUserProfile] = useState({
     firstName: '',
     lastName: '',
     email: '',
     address: '',
     zipCode: '',
     city: '',
-    setUserProfileContext: (info) =>
+    setUserProfileContext: (info) => {
       setUserProfile((prevState) => {
-        console.log(prevState);
         const key = Object.keys(info);
         return {
           ...prevState,
-          [key]: Object.values(info)[0],
+          [key]: Object.values(info)[0], // update
         };
-      }),
-  };
-  const [userProfile, setUserProfile] = useState(userProfileState);
+      });
+    }
+  });
   return (
     <UserProfileContext.Provider value={userProfile}>
       {children}

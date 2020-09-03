@@ -24,7 +24,7 @@ export const Confirm = () => {
                 <br />
                 
                {
-                useProfile.address && 
+                useProfile.address && // Purpose: co gia tri thi ul moi dc render, check 1 address la dc
                     <ul className="address">
                         <li>{(useProfile.lastName).toUpperCase()}, {useProfile.firstName}</li>
                         <li>{useProfile.address}</li>
