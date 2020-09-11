@@ -22,7 +22,7 @@ export default function onlineStoreApp(state = initiaState, action) {
           return item.id === action.payload.id
             ? { ...item, quantity: action.payload.quantity }
             : item;
-        }), 
+        }),
       }; // map, filter will return a new arr and initiaState is not change
     case actions.REMOVE_FROM_CART:
       return {

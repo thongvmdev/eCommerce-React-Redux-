@@ -64,7 +64,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 export default connect(mapStateToProps)(App);
 /* Cach khac */
 // export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
