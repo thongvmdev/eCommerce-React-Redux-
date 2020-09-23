@@ -6,7 +6,6 @@ import '../../styles/App.css';
 
 const Row = ({ item }) => {
   const { id, quantity, details } = item;
-  console.log(item);
   const [qty, setQty] = useState(quantity);
   const dispatch = useDispatch();
 
@@ -87,14 +86,13 @@ const Table = ({ items }) => {
 
 export const CartPage = () => {
   const items = useSelector((state) => state.items);
-  console.log(items);
-  const [subTotal, setSubTotal] = useState(11120.0);
+  // console.log(items);
+  const [subTotal, setSubTotal] = useState(0.0);
   const [total, setTotal] = useState(0.0);
   const shipping = 10.0;
 
   useEffect(() => {
     let totals = items.map((item) => item.quantity * item.details.price);
-    console.log(totals);
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0));
     setTotal(subTotal + shipping);
   }, [items, subTotal, total]); // Why useEfect -> Neu ko use it, react chua render first, da change state -> error
@@ -145,3 +143,5 @@ export const CartPage = () => {
     </div>
   );
 };
+
+// Purpose: Get value from state in redux -> Render UI and tinh toan gia tri san pham

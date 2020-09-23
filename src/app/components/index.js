@@ -32,7 +32,6 @@ export const Navbar = ({ filter, setFiltering }) => {
                 placeholder='Search'
                 aria-label='Search'
                 onChange={(e) => {
-                  // console.log(e.target.value.length)
                   setFiltering(e.target.value.length > 0);
                   filter(e.target.value);
                 }}

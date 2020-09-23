@@ -38,4 +38,4 @@ export default function onlineStoreApp(state = initiaState, action) {
     default:
       return state;
   }
-} // Purpose of ...state, ...state.items -> cap nhat lai state va ko lam thay doi initiaState de thoa man dieu kien pure function
+}
