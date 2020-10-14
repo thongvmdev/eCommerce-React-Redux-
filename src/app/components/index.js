@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../lib/actions';
 
 export const Navbar = ({ filter, setFiltering }) => {
-  const items = useSelector((state) => state.items); // Purpose: hien thi length -> badge
+  const items = useSelector((state) => state.items); // Connect to redux - Purpose: hien thi length -> badge
   return (
     <nav className='navbar orange navbar-expand-lg navbar-light bg-light fixed-top'>
       <Link to='/' className='navbar-brand crimson'>

@@ -6,7 +6,6 @@ import '../../styles/App.css';
 export const Checkout = () => {
   const [isValid, setValid] = useState(false);
   const value = useContext(UserProfileContext); // It's consumer
-  // console.log(value)
   const {
     firstName,
     lastName,
@@ -27,7 +26,7 @@ export const Checkout = () => {
 
   useEffect(() => {
     validate();
-  });
+  }); // DidMount and DidUpdate
 
   return (
     <Fragment>

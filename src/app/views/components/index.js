@@ -30,7 +30,7 @@ const App = (props) => {
 
   useEffect(() => {
     dispatch(saveCart(items));
-  }, [items]);
+  }, [dispatch, items]);
 
   return (
     <Router>
